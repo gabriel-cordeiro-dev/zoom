@@ -1,0 +1,68 @@
+{% extends 'layout.njk' %}
+
+{% block content %}
+<div class="card">
+    <section 
+        class="avatar" 
+        style="background: url({{ instructor.avatar_url }}) no-repeat center center / cover">
+    </section>
+
+    <section class="details">
+        <h3>Detalhes</h3>
+
+        <div class="item">
+    <div>Ano</div>
+        <div>
+            <input 
+                type="text" 
+                name="ano"
+                placeholder="Ano"
+                value="{{ capacidade_producao.ano }}"
+            >
+        </div>
+    </div>
+
+        <div class="item">
+            <div>Capacidade</div>
+            <div>
+                <input 
+                    type="text"
+                    name="capacidade"
+                    placeholder="Capacidade"
+                    value="{{ capacidade_producao.capacidade }}"
+                >
+            </div>
+        </div>
+
+        <div class="item">
+            <div>Mês</div>
+            <div>
+                <input 
+                    type="text" 
+                    name="mes"
+                    placeholder="Mês"
+                    value="{{ capacidade_producao.mes }}"
+                >
+            </div>
+        </div>
+
+        <div class="item">
+            <div>Categoria</div>
+            <div>
+                {% for category in capacidade_producao.cateogry%}
+                <span>{{ category }}</span>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="item">
+            <div>Desde</div>
+            <div>{{ instructor.created_at }}</div>
+        </div>
+
+        <a href="/instructors/{{ instructor.id }}/edit" class="button">Editar</a>
+
+    </section>
+</div>
+
+{% endblock content %}

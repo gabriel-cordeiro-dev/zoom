@@ -1,0 +1,41 @@
+{% extends 'layout.njk' %}
+
+{% block content %}
+<div class="card table-container">
+    <a href="/instructors/create">Novo</a>
+    <table width="100%">
+        <thead>
+            <tr>
+                <th>Ano</th>
+                <th>Mes</th>
+                <th>Categoria</th>
+                <th>Capacidade</th>
+                <th>Ver</th> <!-- Add the "Ver" column here -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for instructor in instructors %}
+            <tr >
+                <td>{{ instructor.ano }}</td>
+                <td>{{ instructor.mes }}</td>
+                <td>
+                    <a href="#" 
+                       style="display: center; padding: 5px 10px; border-radius: 5px; text-decoration: none;
+                              {% if instructor.category === 'Servidor' %}
+                                background-color: #007bff; color: #fff;
+                              {% elif instructor.category === 'Mini PC' %}
+                                background-color: #28a745; color: #fff;
+                              {% elif instructor.category === 'Outros' %}
+                                background-color: #ffc107; color: #000;
+                              {% endif %}">
+                        {{ instructor.category }}
+                    </a>
+                </td>
+                <td>{{ instructor.capacidade }}</td>
+                <td><a href="/instructors/{{ instructor.id }}">Ver</a></td> <!-- "Ver" button with the link to instructor details page -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}
